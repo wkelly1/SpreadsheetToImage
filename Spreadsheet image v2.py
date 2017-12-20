@@ -83,8 +83,17 @@ def rgbToHex(rgb):
     #print("hex colour = "+hexColour)
     return hexColour
 
+def removeDigits(string):
+    numbers = ['0','1','2','3','4','5','6','7','8','9']
+    result=""
+    for i in string:
+        if i not in numbers:
+            result += i
 
-image = "dog.jpg" #Type the file name in here
+    return result
+
+
+image = "cat.jpg" #Type the file name in here
 
 im = Image.open(image)
 pixels = str(list(im.getdata()))
@@ -104,7 +113,6 @@ number = 0
 for i in listPixels:
     print(i)
     #print(number)
-
     #ws[columns[number]] = int(i[i.index("(")+1:i.index(",")])
     ws[columns[number]] = i
 
@@ -116,6 +124,13 @@ for i in listPixels:
                          fill_type='solid')
 
     ws[columns[number]].fill = colour
+    ws.row_dimensions[number].height = 26.5
     number = number + 1
+
+
+for i in columns[0:width]:
+    column = removeDigits(i)
+    ws.column_dimensions[column].width = 5
+
 # Save the file
 wb.save("sample.xlsx")
