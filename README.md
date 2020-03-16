@@ -1,2 +1,2 @@
 # SpreadsheetToImage
-Converts a image into a spreadsheet image
+Converts an image into a spreadsheet image
